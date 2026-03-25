@@ -1,34 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-        content="width=device-width,initial-scale=1.0">
-        <title> Online Store</title>
-        <link rel="stylesheet"  href="style.css">
-    </head>
-    <body>
-        <!---header--->
-        <header>
-            <h1> Online Store</h1>
-            <input type="text" placeholder="search products...">
-            <div class="cart">
-                cart:0;
-            </div>
-            </header>
-            <!---category section-->
-            <section class="categories">
-                <button>ALL</button>
-                <button>Electronics</button>
-                <button>fashion</button>
-                <button>Home</button>
-                 <button>Books</button>
-            </section>
-<section class="products">
-<p style="text-align:center;">products will br displayed here</p>"
-</section>
-<!---products section-->
-<section class="products"  id="productlist"></section>
-</section> 
-</html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+<header>
+    <h1>Online Store</h1>
+    <input type="text" id="searchBox" placeholder="Search products..." onkeyup="searchProducts()">
+    <div class="cart">Cart: <span id="cartCount">0</span></div>
+</header>
+
+<section class="categories">
+    <button onclick="filterCategory('ALL')">ALL</button>
+    <button onclick="filterCategory('Electronics')">Electronics</button>
+    <button onclick="filterCategory('Fashion')">Fashion</button>
+    <button onclick="filterCategory('Books')">Books</button>
+</section>
+
+<section class="products" id="productList"></section>
+
+<!-- ONLY link JS file here -->
+<script src="script.js"></script>
+
+</body>
+</html>
+<script>
+// Product data
+const products = [
+    { name: "Laptop", price: 40000, category: "Electronics", rating: 4.5, image: "laptop.jpeg" },
+    { name: "Book", price: 200, category: "Books", rating: 4.5, image: "book.jpeg" },
+    { name: "Shirt", price: 300, category: "Fashion", rating: 4.5, image: "shirt.jpeg" },
+    { name: "Shoes", price: 800, category: "Fashion", rating: 4.5, image: "shoes.jpeg" }
+];
+
+// Cart count
+let cart = 0;
+
+// Display products
+function displayProducts(productArray) {
+    const container = document.getElementById("productList");
+    container.innerHTML = "";
+
+    productArray.forEach(product => {
+        container.innerHTML += `
+            <div class="card">
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>₹${product.price}</p>
+                <p>⭐ ${product.rating}</p>
+                <button onclick="addToCart('${product.name}')">Add to Cart</button>
+            </div>
+        `;
+    });
+}
+
+// Add to cart
+function addToCart(name) {
+    cart++;
+    document.getElementById("cartCount").innerText = cart;
+    console.log(name + " added to cart");
+}
+
+// Filter category
+function filterCategory(category) {
+    if (category === "ALL") {
+        displayProducts(products);
+    } else {
+        const filtered = products.filter(p => p.category === category);
+        displayProducts(filtered);
+    }
+}
+
+// Search products
+function searchProducts() {
+    const searchValue = document.getElementById("searchBox").value.toLowerCase();
+    const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(searchValue)
+    );
+    displayProducts(filtered);
+}
+
+// Load products on page load
+displayProducts(products);
+</script>
