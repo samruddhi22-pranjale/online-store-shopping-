@@ -24,32 +24,26 @@
 
 <section class="products" id="productList"></section>
 
-<!-- ONLY link JS file here -->
-<script src="script.js"></script>
-
-</body>
-</html>
+<!-- ✅ MOVE SCRIPT HERE -->
 <script>
-// Product data
 const products = [
     { name: "Laptop", price: 40000, category: "Electronics", rating: 4.5, image: "laptop.jpeg" },
     { name: "Book", price: 200, category: "Books", rating: 4.5, image: "book.jpeg" },
     { name: "Shirt", price:1000, category: "Fashion", rating: 4.2, image: "shirt.jpeg" },
     { name: "Shoes", price: 3000, category: "Fashion", rating: 4.3, image: "shoes.jpeg" },
     { name: "Headphones", price:2500, category: "Electronics", rating: 4.5, image: "headphone.jpeg" },
-    { name: "smart watch", price:5000, category: "Electronics", rating: 4.4, image: "smartwatch.jpeg" },
+    { name: "Smart Watch", price:5000, category: "Electronics", rating: 4.4, image: "smartwatch.jpeg" },
     { name: "Jeans", price: 2000, category: "Fashion", rating: 4.5, image: "jeans.jpeg"},
     { name: "Jacket", price:4000, category: "Fashion", rating: 4.4, image: "jacket.jpeg" },
     { name: "Tops", price: 400, category: "Fashion", rating: 4.4, image: "tops.jpeg"},
     { name: "Fan", price:2500, category: "Electronics", rating: 4.5, image: "fan.jpeg" },
-    { name: "NoteBook", price: 100, category: "Books", rating: 4.3, image: "notebook.jpeg" },
-   {name:"Footwear",price:600,category:"Fashion" , rating:4.2,image:"footwear.jpeg"},
-   {name:"Mobile",price:25000,category:"Electronics" , rating:4.5,image:"mobile.jpeg"},
+    { name: "Notebook", price: 100, category: "Books", rating: 4.3, image: "notebook.jpeg" },
+    { name:"Footwear", price:600, category:"Fashion", rating:4.2, image:"footwear.jpeg"},
+    { name:"Mobile", price:25000, category:"Electronics", rating:4.5, image:"mobile.jpeg"},
 ];
 
-// Cart count
 let cart = 0;
-// Display products
+
 function displayProducts(productArray) {
     const container = document.getElementById("productList");
     container.innerHTML = "";
@@ -67,14 +61,11 @@ function displayProducts(productArray) {
     });
 }
 
-// Add to cart
 function addToCart(name) {
     cart++;
     document.getElementById("cartCount").innerText = cart;
-    console.log(name + " added to cart");
 }
 
-// Filter category
 function filterCategory(category) {
     if (category === "ALL") {
         displayProducts(products);
@@ -84,7 +75,6 @@ function filterCategory(category) {
     }
 }
 
-// Search products
 function searchProducts() {
     const searchValue = document.getElementById("searchBox").value.toLowerCase();
     const filtered = products.filter(p =>
@@ -93,6 +83,8 @@ function searchProducts() {
     displayProducts(filtered);
 }
 
-// Load products on page load
 displayProducts(products);
 </script>
+
+</body>
+</html>
