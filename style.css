@@ -101,3 +101,37 @@ text-align:center;
 .card button:hover {
     transform: scale(1.05);
 }
+/* TABLET (≥ 600px) */
+@media (min-width: 600px) {
+    header {
+        flex-wrap: nowrap;
+    }
+
+    header h1 {
+        flex: unset;
+        font-size: 22px;
+        text-align: left;
+    }
+
+    header input {
+        width: 40%;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* LAPTOP (≥ 900px) */
+@media (min-width: 900px) {
+    .products {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* DESKTOP (≥ 1200px) */
+@media (min-width: 1200px) {
+    .products {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
